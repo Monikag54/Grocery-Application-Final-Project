@@ -1,0 +1,9 @@
+.card-title{
+    color:rgb(10, 179, 231);
+    font-size: medium;
+    font-weight: bold;
+}
+
+.card-body{
+    background-color: aquamarine;
+}

@@ -1,0 +1,73 @@
+import { ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from '../modal/Modal';
+import { ProductService } from '../service/product.service';
+import { OrdersComponent } from './orders/orders.component';
+import { ProductsComponent } from './products/products.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { Category } from '../modal/Modal';
+import { CategoryService } from '../service/category.service';
+
+@Component({
+  selector: 'app-grocery',
+  templateUrl: './grocery.component.html',
+  styleUrls: ['./grocery.component.css'],
+})
+export class GroceryComponent implements OnInit {
+  orderFinished = false;
+  name: any;
+  showSearch = false;
+  products: Product[];
+  product: Product = {} as Product;
+  showBtn = -1;
+  showMyContainerInfo = false;
+  categories: Category[]; 
+
+  @ViewChild('productsC')
+  productsC: ProductsComponent;
+
+  @ViewChild('shoppingCartC')
+  shoppingCartC: ShoppingCartComponent;
+
+  @ViewChild('ordersC')
+  ordersC: OrdersComponent;
+
+  constructor(private productService: ProductService, private router: Router,private categoryService: CategoryService) { }
+
+  ngOnInit(): void {
+    this.categoryService.findAllCategories().subscribe(categories => {
+      this.categories = categories;
+    });
+   }
+
+  finishOrder(orderFinished: boolean) {
+    this.orderFinished = orderFinished;
+  }
+
+  reset() {
+    this.orderFinished = false;
+    this.productsC.reset();
+    this.shoppingCartC.reset();
+    this.ordersC.paid = false;
+  }
+  search() {
+    this.productService.findByName(this.name).subscribe((products) => {
+      this.products = products;
+      this.showSearch = true;
+    });
+  }
+
+  showUndoBtn(index) {
+    this.showBtn = index;
+  }
+  productInfo(id: number) {
+    this.productService.findProductById(id).subscribe((product) => {
+      this.product = product;
+    });
+    this.showMyContainerInfo = !this.showMyContainerInfo;
+  }
+  sngleProduct(id: number) {
+    this.router.navigate(['sangle/product', id]);
+  }
+}

@@ -1,0 +1,63 @@
+<style>
+  body {
+    font-family: initial;
+    font-size: 16px;
+    
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  a {
+    margin-right: 20px;
+    color: aliceblue;
+  }
+
+  
+  
+  .fa-shopping-cart {
+    font-size: 50px;
+    margin: 10px;
+  }
+  
+  
+  .toolbar {
+    
+    text-align: center;
+    font-size: 40px;
+    padding-top: 20px;
+    background-color: burlywood;
+    color: rgb(245, 244, 246);
+    font-weight: 700;
+    width: 100vw;
+    font-size: 35px;
+    position:fixed;
+}
+.menu-button{
+  font-size: 30px;
+  margin-right: 200px;
+}
+.heading{
+  margin-right:200px;
+}
+.home-icon{
+  margin-left: 150px;
+}
+</style>
+
+
+<div class="toolbar" role="banner">
+  <button mat-button [matMenuTriggerFor]="menu" class="menu-button">Menu <i class="fas fa-caret-down"></i></button>
+  <mat-menu #menu="matMenu">
+  <button mat-menu-item *ngFor="let cat of categories" [routerLink]="['/dsiplay-category/', cat.id]" class="menu-button">{{cat.name}}</button>
+  </mat-menu>
+  <i class="fas fa-shopping-cart"></i>
+  <span [routerLink]="['/dashboard']" class="heading">FRESH MART</span>
+  <a type="button" [routerLink]="['/dashboard']" class="home-icon">Home <i class="fas fa-home"></i></a>
+  <a type="button" *ngIf="user" [routerLink]="['/profile/', user.id]">Profile <i class="fas fa-user"></i></a>
+  <a type="button" (click)="login()" *ngIf="!user">login</a>
+</div>
+
+<router-outlet></router-outlet>
+  

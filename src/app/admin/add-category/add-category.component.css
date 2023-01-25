@@ -1,0 +1,16 @@
+.card-title{
+    color:rgb(10, 179, 231);
+    font-size: medium;
+    font-weight: bold;
+    
+}
+.card{
+    background-color: rgb(152, 201, 239);
+    background-image: url('https://wallpaperaccess.com/full/2792432.jpg');
+    background-image:cover;
+}
+.mb-3{
+    color:rgb(10, 229, 116);
+    font-size: medium;
+    font-weight: bold;
+}

@@ -1,0 +1,19 @@
+.card-body{
+    background-color: rgb(234, 191, 126);
+    
+}
+.card-title{
+    font-size: medium;
+    font-weight: bold;
+}
+h4{
+    font-size: medium;
+    font-weight: bold;
+    color:rgb(221, 23, 178);
+}
+
+.form-label{
+    font-size: medium;
+    font-weight: bold;
+    color:rgb(109, 23, 221);
+}
